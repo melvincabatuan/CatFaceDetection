@@ -123,9 +123,9 @@ JNIEXPORT void JNICALL Java_io_github_melvincabatuan_catfacedetection_MainActivi
       // cat_face_cascade.detectMultiScale() time = 120.117185 ms
       // cat_face_cascade.detectMultiScale( srcGray, faces, 1.2, 3 , 0 , Size(64, 64));
 
- 
-      resize( srcGray, srcGray, Size(srcGray.cols/2, srcGray.rows/2), INTER_LINEAR );
-      cat_face_cascade.detectMultiScale( srcGray, faces, 1.2, 5 , 0 , Size(64, 64));
+      Mat srcGray1;
+      resize( srcGray, srcGray1, Size(srcGray.cols/2, srcGray.rows/2), INTER_LINEAR );
+      cat_face_cascade.detectMultiScale( srcGray1, faces, 1.2, 5 , 0 , Size(64, 64));
 
       // scalingFactor parameters determine how much the classifier will be scaled up after each run.
       // minNeighbors parameter specifies how many positive neighbors a positive face rectangle should have to be considered a possible match; 
