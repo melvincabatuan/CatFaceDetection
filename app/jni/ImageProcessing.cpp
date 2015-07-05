@@ -124,7 +124,7 @@ JNIEXPORT void JNICALL Java_io_github_melvincabatuan_catfacedetection_MainActivi
       // cat_face_cascade.detectMultiScale( srcGray, faces, 1.2, 3 , 0 , Size(64, 64));
 
  
-      
+      resize( srcGray, srcGray, Size(srcGray.cols/2, srcGray.rows/2), INTER_LINEAR );
       cat_face_cascade.detectMultiScale( srcGray, faces, 1.2, 5 , 0 , Size(64, 64));
 
       // scalingFactor parameters determine how much the classifier will be scaled up after each run.
@@ -156,6 +156,7 @@ JNIEXPORT void JNICALL Java_io_github_melvincabatuan_catfacedetection_MainActivi
        }
 
        /// Display to Android
+       resize( srcGray, srcGray, Size(srcGray.cols*2, srcGray.rows*2), INTER_LINEAR );
        cvtColor(srcGray, mbgra, CV_GRAY2BGRA);
 
 
