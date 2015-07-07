@@ -123,9 +123,9 @@ JNIEXPORT void JNICALL Java_io_github_melvincabatuan_catfacedetection_MainActivi
       // cat_face_cascade.detectMultiScale() time = 120.117185 ms
       // cat_face_cascade.detectMultiScale( srcGray, faces, 1.2, 3 , 0 , Size(64, 64));
 
- 
-      
-      cat_face_cascade.detectMultiScale( srcGray, faces, 1.2, 5 , 0 , Size(64, 64));
+      Mat srcGray1;
+      resize( srcGray, srcGray1, Size(srcGray.cols/2, srcGray.rows/2), INTER_LINEAR );
+      cat_face_cascade.detectMultiScale( srcGray1, faces, 1.2, 5 , 0 , Size(64, 64));
 
       // scalingFactor parameters determine how much the classifier will be scaled up after each run.
       // minNeighbors parameter specifies how many positive neighbors a positive face rectangle should have to be considered a possible match; 
@@ -146,8 +146,8 @@ JNIEXPORT void JNICALL Java_io_github_melvincabatuan_catfacedetection_MainActivi
 
        for( size_t i = 0; i < faces.size(); i++ )
        {
-          Point center(faces[i].x + faces[i].width / 2, faces[i].y + faces[i].height / 2);
-          ellipse(srcGray, center, Size(faces[i].width / 2, faces[i].height / 2), 0, 0, 360, Scalar(255, 0, 255), 4, 8, 0);
+          Point center(faces[i].x * 2 + faces[i].width, faces[i].y *2 + faces[i].height );
+          ellipse(srcGray, center, Size(faces[i].width , faces[i].height ), 0, 0, 360, Scalar(255, 0, 255), 4, 8, 0);
        }//endfor
   
        t = 1000*((double)getTickCount() - t)/getTickFrequency();
@@ -156,6 +156,7 @@ JNIEXPORT void JNICALL Java_io_github_melvincabatuan_catfacedetection_MainActivi
        }
 
        /// Display to Android
+       //resize( srcGray, srcGray, Size(srcGray.cols*2, srcGray.rows*2), INTER_LINEAR );
        cvtColor(srcGray, mbgra, CV_GRAY2BGRA);
 
 
